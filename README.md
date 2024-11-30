@@ -85,13 +85,16 @@ python3 manage.py runserver
 ### **4. Update Request Status via API**
 - Use the /api/service-requests/<id>/update-status/ endpoint to update the status of a service request.
 - Example PATCH request:
-```json
-curl -X PATCH http://127.0.0.1:9000/api/service-requests/1/update-status/ \
--H "Content-Type: application/json" \
--d '{
+```
+PATCH /api/service-requests/1/update-status/ HTTP/1.1
+Host: 127.0.0.1:9000
+Content-Type: application/json
+
+{
     "email": "testuser@example.com",
     "status": "resolved"
-}'
+}
+
 ```
 
 ## Project Structure
