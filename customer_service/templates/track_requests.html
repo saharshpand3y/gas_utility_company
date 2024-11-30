@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Track Your Requests</h2>
+
+<form method="get">
+    <label for="email">Enter your email to track your requests:</label>
+    <input type="email" name="email" id="email" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if requests %}
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th>Date Submitted</th>
+            <th>Date Resolved</th>
+        </tr>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request.request_type }}</td>
+            <td>{{ request.status }}</td>
+            <td>{{ request.details }}</td>
+            <td>{{ request.created_at }}</td>
+            <td>{{ request.resolved_at|default:"Not resolved yet" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% elif error %}
+    <p>{{ error }}</p>
+{% else %}
+    <p>No service requests found.</p>
+{% endif %}
+{% endblock %}
